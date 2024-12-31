@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int longestConsecutive(vector<int>& a) {
+       sort(a.begin(),a.end());
+       int sum=1,ans=0;
+       for(int i=1;i<a.size();i++){
+           if(a[i]==a[i-1])continue;
+           if(a[i]-1==a[i-1])sum++;
+           else{
+               ans=max(ans,sum);
+               sum=1;
+           }
+       }
+       ans=max(ans,sum);
+       return ans;
+    }
+};
