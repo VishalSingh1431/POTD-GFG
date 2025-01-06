@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> sumClosest(vector<int>& a, int t) {
+        int n = a.size();
+        if (n < 2) return {};
+        
+        sort(a.begin(), a.end());
+        int f = -1, l = -1, close = INT_MAX, diff = 0;
+        
+        for (int i = 0; i < n - 1; i++) {
+            int p = upper_bound(a.begin() + i + 1, a.end(), t - a[i]) - a.begin();
+            int d1 = 1e9, d2 = 1e9;
+            int c1 = 1e9, c2 = 1e9;
+            
+            if (p - 1 > i) { // Ensure valid index for a[p-1]
+                c1 = abs(t - (a[i] + a[p - 1]));
+                d1 = abs(a[p - 1] - a[i]);
+            }
+            if (p < n) { // Ensure valid index for a[p]
+                c2 = abs(t - (a[i] + a[p]));
+                d2 = abs(a[p] - a[i]);
+            }
+            
+            if ((c1 < close) || (c1 == close && d1 > diff)) {
+                f = a[i];
+                l = a[p - 1];
+                close = c1;
+                diff = d1;
+            }
+            if ((c2 < close) || (c2 == close && d2 > diff)) {
+                f = a[i];
+                l = a[p];
+                close = c2;
+                diff = d2;
+            }
+        }
+        return {f, l};
+    }
+};
