@@ -1,0 +1,12 @@
+class Solution {
+  public:
+    int countPairs(vector<int> &a, int target) {
+        int ans=0;
+        for(int i=0;i<a.size();i++){
+            int lb=lower_bound(a.begin()+i+1,a.end(),target-a[i])-a.begin();
+            int ub=upper_bound(a.begin()+i+1,a.end(),target-a[i])-a.begin();
+            ans+=ub-lb;
+        }
+        return ans;
+    }
+};
