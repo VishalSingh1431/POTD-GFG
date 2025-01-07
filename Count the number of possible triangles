@@ -1,0 +1,14 @@
+class Solution {
+  public:
+    int countTriangles(vector<int>& a) {
+        int ans=0;
+        sort(a.begin(),a.end());
+        for(int i=0;i<a.size();i++){
+            for(int j=i+1;j<a.size();j++){
+                int p=lower_bound(a.begin()+j,a.end(),a[i]+a[j])-a.begin();
+                if(p-1-j>0)ans+=p-1-j;
+            }
+        }
+        return ans;
+    }
+};
