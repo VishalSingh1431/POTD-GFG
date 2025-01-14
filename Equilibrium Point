@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    
+    int findEquilibrium(vector<int> &a) {
+        int tsum=accumulate(a.begin(),a.end(),0);
+        int currsum=a[0];
+        tsum-=a[0];
+        for(int i=1;i<a.size();i++){
+            tsum-=a[i];
+            if(currsum==tsum)return i;
+            currsum+=a[i];
+        }
+        return -1;
+    }
+};
