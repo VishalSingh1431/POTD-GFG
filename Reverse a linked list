@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    Node* reverseList(Node* head) {
+        vector<int> v;
+        while (head) {
+            v.push_back(head->data);
+            head = head->next;
+        }
+        
+        Node* ans = new Node(v.back());  // Create the new head with the last element
+        Node* temp = ans;
+        for (int i = v.size() - 2; i >= 0; --i) {
+            temp->next = new Node(v[i]);
+            temp = temp->next;
+        }
+        
+        return ans;
+    }
+};
