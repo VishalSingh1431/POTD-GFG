@@ -1,0 +1,13 @@
+class Solution {
+  public:
+  
+    bool detectLoop(Node* head) {
+        map<Node*,int>m;
+        while(head){
+            if(m[head])return 1;
+            m[head]++;
+            head=head->next;
+        }
+        return 0;
+    }
+};
