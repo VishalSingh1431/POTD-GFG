@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    vector<int>v;
+    void dfs(Node *root){
+        if(!root)return ;
+        v.push_back(root->data);
+        dfs(root->left);
+        dfs(root->right);
+    }
+    int kthSmallest(Node *root, int k) {
+        dfs(root);
+        sort(v.begin(),v.end());
+        if(v.size()<k)return -1;
+        return v[k-1];
+    }
+};
