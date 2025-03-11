@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int dp[45];
+    int fn(int n){
+        if(n==0)return 1;
+        if(n<0)return 0;
+        if(dp[n]!=-1)return dp[n];
+        int ans=fn(n-1);
+        ans+=fn(n-2);
+        return dp[n]=ans;
+    }
+    int countWays(int n) {
+       memset(dp,-1,sizeof(dp));
+       return fn(n);
+    }
+};
