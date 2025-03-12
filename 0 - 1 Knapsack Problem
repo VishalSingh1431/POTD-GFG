@@ -1,0 +1,16 @@
+class Solution {
+  public:
+     int dp[1005][1005];
+     int fn(int W, vector<int> &v, vector<int> &wt, int i){
+         if(i>=v.size()||W==0)return 0;
+         if(dp[i][W]!=-1)return dp[i][W];
+         int ans=fn(W,v,wt,i+1);
+         if(W-wt[i]>=0)ans=max(ans,fn(W-wt[i],v,wt,i+1)+v[i]);
+         
+         return dp[i][W]=ans;
+     }
+    int knapsack(int W, vector<int> &val, vector<int> &wt) {
+        memset(dp,-1,sizeof(dp));
+         return fn(W,val,wt,0);
+    }
+};
